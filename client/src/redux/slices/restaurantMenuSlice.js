@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+const apiUrl = process.env.REACT_APP_API_URL;
 
 export const fetchMenusByRestaurantId = createAsyncThunk(
   "restaurantMenu/fetchMenusByRestaurantId",
   async (restaurantId, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `http://localhost:3003/restaurant/${restaurantId}/menus`
+        `${apiUrl}/restaurant/${restaurantId}/menus`
       );
       return { restaurantId, menus: response.data.menus };
     } catch (error) {
@@ -20,7 +21,7 @@ export const deleteAllMenus = createAsyncThunk(
   async (restaurantId, { rejectWithValue }) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3003/restaurant/${restaurantId}/menus/all`
+        `${apiUrl}/restaurant/${restaurantId}/menus/all`
       );
       return restaurantId;
     } catch (error) {
@@ -34,7 +35,7 @@ export const addMenu = createAsyncThunk(
   async ({ restaurantId, menu }, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        `http://localhost:3003/restaurant/${restaurantId}/menus`,
+        `${apiUrl}/restaurant/${restaurantId}/menus`,
         { menu }
       );
       return { restaurantId, menu: response.data };
@@ -49,7 +50,7 @@ export const editMenu = createAsyncThunk(
   async ({ restaurantId, id, updatedMenu }, { rejectWithValue }) => {
     try {
       const response = await axios.put(
-        `http://localhost:3003/restaurant/${restaurantId}/menus`,
+        `${apiUrl}/restaurant/${restaurantId}/menus`,
         {
           menuId: id,
           updatedMenu,
@@ -67,7 +68,7 @@ export const deleteMenu = createAsyncThunk(
   async ({ restaurantId, id }, { rejectWithValue }) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3003/restaurant/${restaurantId}/menus`,
+        `${apiUrl}/restaurant/${restaurantId}/menus`,
         {
           data: { menuId: id },
         }

@@ -19,6 +19,8 @@ const SignUp = () => {
       navigate("/");
     }
   }, [currentUser, navigate]);
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   const [formData, setFormData] = useState({
     name: "",
     username: "",
@@ -45,7 +47,7 @@ const SignUp = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:3003/auth/signup", {
+      const response = await fetch(`${apiUrl}/auth/signup`, {
         method: "POST",
         credentials: "include",
         headers: {

@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+const apiUrl = process.env.REACT_APP_API_URL;
 
 export const updateUserProfile = createAsyncThunk(
   "user/updateUserProfile",
   async ({ userId, userData }, { rejectWithValue }) => {
     try {
       const response = await axios.put(
-        `http://localhost:3003/user/${userId}`,
+        `${apiUrl}/user/${userId}`,
         userData
       );
       return response.data.user;

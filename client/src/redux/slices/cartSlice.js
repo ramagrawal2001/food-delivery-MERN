@@ -1,11 +1,12 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+const apiUrl = process.env.REACT_APP_API_URL;
 
 export const fetchCartItems = createAsyncThunk(
   "cart/fetchCartItems",
   async (userId) => {
     try {
-      const response = await axios.get(`http://localhost:3003/cart/${userId}`);
+      const response = await axios.get(`${apiUrl}/cart/${userId}`);
       return response.data;
     } catch (error) {
       throw error;
@@ -29,7 +30,7 @@ export const addToCart = createAsyncThunk(
     restaurantName
   }) => {
     try {
-      const response = await axios.post("http://localhost:3003/cart/add", {
+      const response = await axios.post(`${apiUrl}/cart/add`, {
         userId,
         restaurantId,
         id,
@@ -53,7 +54,7 @@ export const removeFromCart = createAsyncThunk(
   "cart/removeFromCart",
   async ({ userId, restaurantId, id }) => {
     try {
-      const response = await axios.post("http://localhost:3003/cart/remove", {
+      const response = await axios.post(`${apiUrl}/cart/remove`, {
         userId,
         restaurantId,
         id,
@@ -69,7 +70,7 @@ export const checkoutCart = createAsyncThunk(
   "cart/checkoutCart",
   async (userId) => {
     try {
-      const response = await axios.post(`http://localhost:3003/cart/checkout/${userId}`);
+      const response = await axios.post(`${apiUrl}/cart/checkout/${userId}`);
       return response.data;
     } catch (error) {
       throw error;

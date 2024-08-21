@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const baseUrl = "http://localhost:3003/restaurants";
+const baseUrl = `${process.env.REACT_APP_API_URL}/restaurants`;
 
 export const fetchRestaurants = createAsyncThunk(
   "restaurants/fetchRestaurants",

@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+const apiUrl = process.env.REACT_APP_API_URL;
 
 export const fetchQueries = createAsyncThunk(
   "contactUs/fetchQueries",
   async () => {
     try {
-      const response = await axios.get("http://localhost:3003/contactUs");
+      const response = await axios.get(`${apiUrl}/contactUs`);
       return response.data;
     } catch (error) {
       throw error;
@@ -18,7 +19,7 @@ export const addQuery = createAsyncThunk(
   async (newQuery) => {
     try {
       const response = await axios.post(
-        "http://localhost:3003/contactUs",
+        `${apiUrl}/contactUs`,
         newQuery
       );
       return response.data;
