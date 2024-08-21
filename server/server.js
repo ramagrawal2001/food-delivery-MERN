@@ -15,7 +15,7 @@ const { MONGO_URL, PORT } = process.env;
 var app = express();
 app.use(
   cors({
-    origin: ["http://localhost:3002","https://zingy-horse-991d95.netlify.app/"],
+    origin: ["http://localhost:3002","https://zingy-horse-991d95.netlify.app/","https://food-delivery-client-37r9.onrender.com"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
